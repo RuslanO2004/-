@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<!-- служебная часть -->
+
+<head>
+  <!-- заголовок страницы -->
+  <title>Текстовый редактор</title>
+  <!-- настраиваем служебную информацию для браузеров -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- задаём CSS-стили прямо здесь же, чтобы всё было в одном файле -->
+  <style type="text/css">
+    /*задаём общие параметры для всей страницы: шрифт и отступы*/
+    body {
+      background:transparent;
+    background:url(../ФОН.jpg) repeat;
+      text-align: left;
+      margin: 10;
+      font-family: Courier New, Courier;
+      font-size: 20px;
+
+    }
+
+    /* оформляем окно редактора */
+    .editorSheet {
+      width: 80vw;
+      min-height: 100vw;
+      margin-left: 10vw;
+      border: solid;
+      border-width: 0px;
+      text-align: left;
+      background-color: #fff9db;
+      -webkit-box-shadow: 6px 10px 9px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 6px 10px 9px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 6px 10px 9px 0px rgba(0, 0, 0, 0.75);
+      padding: 15px;
+    }
+
+    h1 {
+      display: block;
+ margin-left: auto;
+ margin-right: auto;
+ width: 20%;
+      padding: 1px;
+      background-color: #fff9db;
+      color: rgb(0, 0, 0); /* Черный текст */
+      text-align: center;
+      font-size: 40px;
+      font-family: Tahoma;
+      font-weight: 900;
+      border-radius: 10%; /* Скругление углов, делает кнопку круглой */
+    }
+    #saveBtn, #clearBtn {
+   padding: 10px 20px;
+   margin: 10px 2px;
+   color: white;
+   font-weight: bold;
+   font-size: 18px;
+   cursor: pointer;
+}
+
+#saveBtn {
+   background-color: green;
+   
+}
+
+#saveBtn:hover {
+   background-color: darkgreen;
+}
+
+#clearBtn {
+   background-color: red;
+ margin-right: 80px; /* Добавляем отступ справа от кнопки "Очистить" */
+ font-weight: bold; /* Делаем текст кнопки "Очистить" жирным */
+
+}
+
+#clearBtn:hover {
+   background-color: darkred;
+}
+#boldBtn, #italicBtn, #underlineBtn {
+  padding: 10px 20px;
+  margin: 10px 2px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#boldBtn {
+  background-color: orange;
+  font-weight: bold;
+}
+
+#boldBtn:hover {
+  background-color: rgb(199, 111, 4);
+}
+
+#italicBtn {
+  background-color: blue;
+  font-style: italic;
+  font-weight: normal;
+}
+
+#italicBtn:hover {
+  background-color: rgb(3, 3, 149);
+}
+
+#underlineBtn {
+  background-color: purple;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+#underlineBtn:hover {
+  background-color: rgb(81, 1, 81);
+}
+
+ /* Стили для кнопки вставки изображений */
+ #insertImageBtn {
+     padding: 10px 20px;
+     margin: 10px 2px;
+     color: white;
+     font-weight: bold;
+     font-size: 18px;
+     cursor: pointer;
+     background-color: #555;
+     border: none;
+     border-radius: 5px;
+     transition: background-color 0.3s ease;
+   }
+
+   #insertImageBtn:hover {
+     background-color: black;
+   }
+
+   #insertImageBtn img {
+     width: 20px;
+     height: 20px;
+     vertical-align: middle;
+   }
+
+
+     /* Класс для круглой кнопки */
+.round-button {
+    background-color: #ffffff; /* Белый фон */
+    border: none; /* Без границы */
+    color: rgb(0, 0, 0); /* Черный текст */
+    padding: 15px 22px; /* Отступы вокруг текста */
+    text-align: center; /* Выравнивание текста по центру */
+    text-decoration: none; /* Без подчеркивания */
+    display: inline-block; /* Блочный элемент, но с возможностью выравнивания по центру */
+    font-size: 20px; /* Размер шрифта */
+    margin: 100px 2px; /* Отступы между кнопками */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    border-radius: 50%; /* Скругление углов, делает кнопку круглой */
+    width: 20px; /* Ширина кнопки */
+    height: 20px; /* Высота кнопки */
+    line-height: 20px; /* Вертикальное выравнивание текста */
+    user-select: none;
+    transition: all 0.35s ease 0s; /* Плавная анимация */
+   }
+   
+   /* Эффект при наведении на кнопку */
+   .round-button:hover {
+    background-color: #000000; /* Черный фон при наведении */
+    color: rgb(255, 255, 255); /* Белый текст при наведении */
+    width: 40px; /* Ширина кнопки */
+    height: 40px; /* Высота кнопки */
+    line-height: 40px; /* Вертикальное выравнивание текста */
+    box-shadow: 0 0 0 8000px rgba(255, 255, 255, 0.5);
+   }
+
+    /*закончили со стилями*/
+  </style>
+  <!-- закрываем служебную часть страницы -->
+</head>
+<!-- началось содержимое страницы -->
+
+<body>
+  <div style="position: fixed; top: 0; left: 0;">
+    <a href="../index.html" class="round-button">&#9665</a>
+     </div>
+  <button id="saveBtn" >Сохранить</button>
+  <button id="clearBtn">Очистить</button>
+  <button id="boldBtn">ЖИРНЫЙ</button>
+<button id="italicBtn">Курсив</button>
+<button id="underlineBtn">Подчеркнутый</button>
+<button id="insertImageBtn"><img src="../фото.png" alt="Insert Image"></button>
+
+  <!-- началась видимая часть -->
+  <!-- заголовок страницы -->
+  <h1>ТЕКСТОВЫЙ РЕДАКТОР</h1>
+  <!-- большой блок для ввода текста: высота в половину, а ширина — во весь экран, назвывается "text_area", обведено рамкой толщиной в 1 пиксель, выравнивание текста — по левому краю -->
+  <div id="editor" contenteditable="true" class="editorSheet">
+
+  </div>
+  <!-- закончилась видимая часть -->
+  <!-- пишем скрипт, который будет постоянно сохранять наш текст -->
+  <script>
+    // если в нашем хранилище уже что-то есть…
+    if (localStorage.getItem('text_in_editor') !== null) {
+      // …то отображаем его содержимое в нашем редакторе
+      document.getElementById('editor').innerHTML = localStorage.getItem('text_in_editor');
+    }
+    // отслеживаем каждое нажатие клавиши и при каждом нажатии выполняем команду
+    document.addEventListener('keydown', function (e) {
+      // записываем содержимое нашего редактора в хранилище
+      localStorage.setItem('text_in_editor', document.getElementById('editor').innerHTML);
+    });
+    document.getElementById('saveBtn').addEventListener('click', saveText);
+
+document.getElementById('clearBtn').addEventListener('click', clearEditor);
+
+function saveText() {
+   let editorContent = document.getElementById('editor').innerText;
+   let blob = new Blob([editorContent], {type: 'text/plain'});
+   let url = URL.createObjectURL(blob);
+   let link = document.createElement('a');
+   link.download = 'text.txt';
+   link.href = url;
+   link.click();
+}
+
+
+function clearEditor() {
+   document.getElementById('editor').innerHTML = '';
+}
+document.getElementById('boldBtn').addEventListener('click', toggleBold);
+document.getElementById('italicBtn').addEventListener('click', toggleItalic);
+document.getElementById('underlineBtn').addEventListener('click', toggleUnderline);
+
+function toggleBold() {
+  document.execCommand('bold', false, '');
+}
+
+function toggleItalic() {
+  document.execCommand('italic', false, '');
+}
+
+function toggleUnderline() {
+  document.execCommand('underline', false, '');
+}
+document.getElementById('insertImageBtn').addEventListener('click', function () {
+     var input = document.createElement('input');
+     input.type = 'file';
+     input.accept = '.jpg,.jpeg,.png,.gif';
+     input.click();
+     input.addEventListener('change', function () {
+       var reader = new FileReader();
+       reader.onload = function (e) {
+         var img = document.createElement('img');
+         img.src = e.target.result;
+         document.getElementById('editor').appendChild(img);
+       };
+       reader.readAsDataURL(this.files[0]);
+     }, false);
+   });
+ // закончился скрипт
+  </script>
+  <!-- закончилось содержимое страницы -->
+</body>
+<!-- конец всего HTML-документа -->
+
+</html>

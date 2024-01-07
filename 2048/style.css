@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body{
+    background:transparent;
+    background:url(../ФОН.jpg) repeat;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+    
+}
+
+.game-container{
+   width: 384px;
+   height: 384px;
+   border: 1px solid #ccc;
+   overflow: hidden;
+   color: white;
+   border-radius: 10%;
+   background: #8c52ff;
+   padding: 20px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.cell{
+    width: 93px;
+    height: 93px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: #000;
+}
+
+.score-container{
+    font-weight: bold;
+    color: white;
+    font-size: 1.5em;
+    width: 384px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+   border-radius: 5% 25%;
+   background: #8c52ff;
+   padding: 10px;
+}
+
+.cell[data-value="2"]{
+    background-color: #ffc0cb;
+}
+
+.cell[data-value="4"]{
+    background-color: #add8e6;
+}
+
+.cell[data-value="8"]{
+    background-color: #98fb98;
+}
+
+.cell[data-value="16"]{
+    background-color: #ffd700;
+}
+
+.cell[data-value="32"]{
+    background-color: #ffa07a;
+}
+
+.cell[data-value="64"]{
+    background-color: #87ceeb;
+}
+
+.cell[data-value="128"]{
+    background-color: #ffff00;
+}
+
+.cell[data-value="256"]{
+    background-color: #40e0d0;
+}
+
+.cell[data-value="512"]{
+    background-color: #ff69b4;
+}
+
+.cell[data-value="1024"]{
+    background-color: #7b68ee;
+}
+
+.cell[data-value="2048"]{
+    background-color: #ff6347;
+}
+
+.cell[data-value="4096"]{
+    background-color: #a9a9a9;
+}
+
+#restart-btn{
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #f4f4f4;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#game-over{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-cell[data-value]{
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.new-tile{
+    animation: appear 0.3s;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.round-button {
+    background-color: #ffffff; /* Белый фон */
+    border: none; /* Без границы */
+    color: rgb(0, 0, 0); /* Черный текст */
+    padding: 15px 22px; /* Отступы вокруг текста */
+    text-align: center; /* Выравнивание текста по центру */
+    text-decoration: none; /* Без подчеркивания */
+    display: inline-block; /* Блочный элемент, но с возможностью выравнивания по центру */
+    font-size: 20px; /* Размер шрифта */
+    margin: 4px 2px; /* Отступы между кнопками */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    border-radius: 50%; /* Скругление углов, делает кнопку круглой */
+    width: 20px; /* Ширина кнопки */
+    height: 20px; /* Высота кнопки */
+    line-height: 20px; /* Вертикальное выравнивание текста */
+    user-select: none;
+    transition: all 0.35s ease 0s; /* Плавная анимация */
+    
+   }
+   
+   /* Эффект при наведении на кнопку */
+   .round-button:hover {
+    background-color: #000000; /* Черный фон при наведении */
+    color: rgb(255, 255, 255); /* Белый текст при наведении */
+    width: 40px; /* Ширина кнопки */
+    height: 40px; /* Высота кнопки */
+    line-height: 40px; /* Вертикальное выравнивание текста */
+    box-shadow: 0 0 0 8000px rgba(255, 255, 255, 0.5);
+   }
